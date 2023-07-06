@@ -46,11 +46,13 @@ public class EventEditActivity extends AppCompatActivity
 
     public void saveEventAction(View view)
     {
-            String eventName = eventNameET.getText().toString();
-            Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
-            Event.eventsList.add(newEvent);
-            //Cần thêm sqlite để save vô file
-            finish();
+        DBOpenHelper mydb= new DBOpenHelper(EventEditActivity.this);
+        String eventName = eventNameET.getText().toString();
+        Event newEvent= new Event(eventName, CalendarUtils.selectedDate, time);
+        Event.eventsList.add(newEvent);
+        //Cần thêm sqlite để save vô file
+        mydb.saveEvent(eventName, null, time.toString(), CalendarUtils.selectedDate.toString(), null);
+        finish();
     }
 
     public void popTimePick(View view) {
