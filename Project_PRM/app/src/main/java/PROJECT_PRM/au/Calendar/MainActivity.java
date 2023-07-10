@@ -1,5 +1,6 @@
 package PROJECT_PRM.au.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import java.util.Date;
 
 import static PROJECT_PRM.au.Calendar.CalendarUtils.daysInMonthArray;
 import static PROJECT_PRM.au.Calendar.CalendarUtils.monthYearFromDate;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
@@ -38,6 +42,23 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
         //db= new DBOpenHelper(MainActivity.this);
         //storeDataInArray();
+        BottomNavigationView actionBar = findViewById(R.id.action_bar);
+        actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.allListSchedule:
+                        Toast.makeText(MainActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.dayListSchedule:
+                        Toast.makeText(MainActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
     void storeDataInArray(){

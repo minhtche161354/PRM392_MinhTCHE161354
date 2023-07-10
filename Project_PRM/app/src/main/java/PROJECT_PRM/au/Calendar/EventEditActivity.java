@@ -1,15 +1,21 @@
 package PROJECT_PRM.au.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.time.LocalTime;
 
@@ -34,6 +40,24 @@ public class EventEditActivity extends AppCompatActivity
         time = LocalTime.now();
         eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
         eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+
+        BottomNavigationView actionBar = findViewById(R.id.action_bar);
+        actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(EventEditActivity.this, MainActivity.class));
+                        break;
+                    case R.id.allListSchedule:
+                        Toast.makeText(EventEditActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.dayListSchedule:
+                        Toast.makeText(EventEditActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
     private void Binding()
