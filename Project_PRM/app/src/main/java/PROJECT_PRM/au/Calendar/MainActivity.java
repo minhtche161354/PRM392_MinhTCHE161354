@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
-    DBOpenHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,24 +35,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
-        //db= new DBOpenHelper(MainActivity.this);
-        //storeDataInArray();
-    }
-
-    void storeDataInArray(){
-        Cursor cursor= db.readEvents();
-        if(cursor.getCount()==0){
-            Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
-        }else{
-            if(Event.eventsList.isEmpty()){
-                while (cursor.moveToNext()){
-                    Event newEvent = new Event(cursor.getString(0), LocalDate.parse(cursor.getString(3)), LocalTime.parse(cursor.getString(2)));
-                    Event.eventsList.add(newEvent);
-                }
-            }else{
-                Event.eventsList.clear();
-            }
-        }
     }
 
     private void initWidgets()

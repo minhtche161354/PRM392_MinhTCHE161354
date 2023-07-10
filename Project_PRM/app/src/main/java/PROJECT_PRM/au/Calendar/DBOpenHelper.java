@@ -65,9 +65,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readEvents() {
+    Cursor readEventsByDay(String date) {
         SQLiteDatabase db= this.getReadableDatabase();
-        String query= "SELECT * FROM "+ TABLE_NAME;
+        String query= "SELECT * FROM "+ TABLE_NAME + " WHERE date = '"+ date +"'";
 
         Cursor cursor= null;
         if(db != null){
