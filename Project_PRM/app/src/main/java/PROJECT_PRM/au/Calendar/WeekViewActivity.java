@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static PROJECT_PRM.au.Calendar.CalendarUtils.daysInWeekArray;
 import static PROJECT_PRM.au.Calendar.CalendarUtils.monthYearFromDate;
@@ -24,7 +26,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
-    private DBOpenHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,8 +36,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         initWidgets();
         setWeekView();
 
-        db= new DBOpenHelper(this);
-        storeDataInArray();
+
     }
 
     private void initWidgets()
@@ -96,19 +97,5 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
-    void storeDataInArray(){
-        Cursor cursor= db.readEventsByDay(CalendarUtils.selectedDate.toString());
-        if(cursor.getCount()==0){
-            Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
-        }else{
-            if(Event.eventsList.isEmpty()){
-                while (cursor.moveToNext()){
-                    Event newEvent = new Event(cursor.getString(0), LocalDate.parse(cursor.getString(3)), LocalTime.parse(cursor.getString(2)));
-                    Event.eventsList.add(newEvent);
-                }
-            }else{
-                Event.eventsList.clear();
-            }
-        }
-    }
+
 }
