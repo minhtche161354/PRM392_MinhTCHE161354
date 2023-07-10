@@ -87,4 +87,24 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    void updateEvent(String row_id, String title, String description, String time, String date, String location){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues cv= new ContentValues();
+
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_TIME, time);
+        cv.put(COLUMN_DATE, date);
+        cv.put(COLUMN_LOCATION, location);
+
+        long result= db.update(TABLE_NAME, cv, "ID=?", new String[]{row_id});
+        if(result == -1 ){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Update successfully !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 }
