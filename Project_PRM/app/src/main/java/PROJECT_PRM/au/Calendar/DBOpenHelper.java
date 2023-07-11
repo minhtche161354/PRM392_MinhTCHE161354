@@ -104,7 +104,4 @@ public class DBOpenHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Update successfully !", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }
