@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private RecyclerView calendarRecyclerView;
 
     DBOpenHelper db;
+    private int NOTIFY_PERMISSION_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,9 +60,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
        // tao permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
             if(ContextCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, 101);
+                    Manifest.permission.FOREGROUND_SERVICE) != PackageManager.PERMISSION_GRANTED){
+                requestNotificationPermission();
             }
         }
 
@@ -80,6 +82,42 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                 }
             }
         });
+    }
+
+    private void requestNotificationPermission() {
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.FOREGROUND_SERVICE)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed for the app to work")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.FOREGROUND_SERVICE}, NOTIFY_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    }).create().show();
+        }
+        else{
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.FOREGROUND_SERVICE}, NOTIFY_PERMISSION_CODE);
+        }
+    }
+
+    // Ket qua chon sau khi hoi permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == NOTIFY_PERMISSION_CODE){
+            if(grantResults.length > 0 & grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     void storeDataInArray(){
@@ -149,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
+    //start service
+    public void startService(View v){
+        Intent serviceIntent = new Intent(this, ForeGroundServices.class);
+    }
 
 }
 
