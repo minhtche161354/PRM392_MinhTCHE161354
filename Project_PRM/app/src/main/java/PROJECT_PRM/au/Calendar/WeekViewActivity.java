@@ -22,7 +22,7 @@ import static PROJECT_PRM.au.Calendar.CalendarUtils.monthYearFromDate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, EventAdapter.DataChange
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
@@ -67,17 +67,14 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         DEL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                calendarRecyclerView.getAdapter().notifyDataSetChanged();
-
+                setEventAdpater();
                 //notifyDataSetChanged();
-
             }
         });
         Edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setWeekView();
+                setEventAdpater();
             }
         });
     }
@@ -139,5 +136,10 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
+    }
+
+    @Override
+    public void DELCLICK(int position, LocalDate date) {
+
     }
 }

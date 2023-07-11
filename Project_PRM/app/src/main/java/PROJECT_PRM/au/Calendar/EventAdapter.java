@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EventAdapter extends ArrayAdapter<Event>
@@ -51,7 +52,7 @@ public class EventAdapter extends ArrayAdapter<Event>
                         if(hold.getName().equals(event.getName())
                         &&hold.getTime().equals(event.getTime())){
                             Event.eventsList.remove(hold);
-                            notifyDataSetChanged();
+
                             break;
                         }
                     }
@@ -65,8 +66,9 @@ public class EventAdapter extends ArrayAdapter<Event>
         return convertView;
     }
 
-    public interface DataChangeListener {
-        void onDataChanged();
+    public interface  DataChange
+    {
+        void DELCLICK(int position, LocalDate date);
     }
 
 //    private DataChangeListener dataChangeListener;
