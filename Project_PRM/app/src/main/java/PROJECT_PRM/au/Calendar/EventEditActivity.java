@@ -30,6 +30,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventEditActivity extends AppCompatActivity
 {
@@ -92,7 +94,7 @@ public class EventEditActivity extends AppCompatActivity
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         long notificationTimeMillis = Duration.between(currentDateTime, selectedDateTime).toMillis();
-        scheduleNotification(notificationTimeMillis, eventName);
+        scheduleNotification(notificationTimeMillis, eventName, Event.eventsList.size() - 1);
 
         //Cần thêm sqlite để save vô file
         mydb.saveEvent(eventName, null, time.toString(), CalendarUtils.selectedDate.toString(), null);
@@ -116,12 +118,12 @@ public class EventEditActivity extends AppCompatActivity
     }
 
     // tao thong bao
-    private void scheduleNotification(long notificationTimeMillis, String eventName) {
+    private void scheduleNotification(long notificationTimeMillis, String eventName, int notificationId) {
         Intent notificationIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
         notificationIntent.putExtra("eventName", eventName);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis() + notificationTimeMillis, pendingIntent);
