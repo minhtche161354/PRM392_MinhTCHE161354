@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    style="@style/ScreenBackground">
+
     <include layout="@layout/action_bar"/>
 
     <LinearLayout
@@ -21,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
-            android:textColor="@color/blue"
+            style="@style/ButtonColor"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="previousMonthAction"
@@ -35,14 +37,14 @@
             android:text="Feb 2021"
             android:textSize="20sp"
             android:textAlignment="center"
-            android:textColor="@color/black"/>
+            style="@style/TextColor"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/forward"
-            android:textColor="@color/blue"
+            style="@style/ButtonColor"
             android:background="@null"
             android:textStyle="bold"
             android:onClick="nextMonthAction"
@@ -140,7 +142,7 @@
             android:text="AddSchedule"
             android:onClick="newEventAction"
             android:background="@null"
-            android:textColor="@color/blue"
+            style="@style/ButtonColor"
             android:layout_marginEnd="20dp"
             />
         <Button
@@ -150,7 +152,7 @@
             android:text="ListSchedule"
             android:onClick="weeklyAction"
             android:background="@null"
-            android:textColor="@color/blue"
+            style="@style/ButtonColor"
             android:layout_marginStart="20dp"
             />
     </LinearLayout>

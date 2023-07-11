@@ -2,4 +2,21 @@
     <!-- Base application theme. -->
     <style name="Theme.CalendarAppExample" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
+
+    <!--Light mode -->
+    <!--Screen background if light mode on -->
+    <style name="ScreenBackground">
+        <item name="android:background">#FFF</item>
+    </style>
+    <!--Texts color if light mode on -->
+    <style name="TextColor">
+        <item name="android:textColor">#000</item>
+    </style>
+    <!--button background if light mode on -->
+    <style name="ButtonColor">
+        <item name="android:textColor">@color/blue</item>
+    </style>
+    <style name="IconColor">
+        <item name="android:iconTint">@color/white</item>
+    </style>
 </resources>
