@@ -101,7 +101,12 @@ public class EventEditActivity extends AppCompatActivity
                 holdHour = hour;
                 holdMinute = minute;
                 time = LocalTime.of(hour,minute);
-                eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+                if(holdHour==0){
+                    eventTimeTV.setText("Time: " +"00"+CalendarUtils.formattedTime(time).substring(2));
+                }
+                else {
+                    eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+                }
             }
         };
         int style = AlertDialog.THEME_HOLO_DARK;

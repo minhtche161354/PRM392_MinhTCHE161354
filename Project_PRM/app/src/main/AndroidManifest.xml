@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarAppExample">
-        <activity android:name="PROJECT_PRM.au.Calendar.EventEditActivity"></activity>
+        <activity android:name="PROJECT_PRM.au.Calendar.EventEditActivity"/>
         <activity android:name="PROJECT_PRM.au.Calendar.WeekViewActivity" />
         <activity android:name="PROJECT_PRM.au.Calendar.MainActivity" android:exported="true">
             <intent-filter>
