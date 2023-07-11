@@ -65,9 +65,9 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readEvents() {
+    Cursor readEventsByDay(String date) {
         SQLiteDatabase db= this.getReadableDatabase();
-        String query= "SELECT * FROM "+ TABLE_NAME;
+        String query= "SELECT * FROM "+ TABLE_NAME + " WHERE date = '"+ date +"'";
 
         Cursor cursor= null;
         if(db != null){
@@ -75,5 +75,35 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    Cursor readEvents() {
+        SQLiteDatabase db= this.getReadableDatabase();
+        String query= "SELECT * FROM "+ TABLE_NAME ;
+
+        Cursor cursor= null;
+        if(db != null){
+            cursor= db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    void updateEvent(String row_id, String title, String description, String time, String date, String location){
+        SQLiteDatabase db= this.getWritableDatabase();
+        ContentValues cv= new ContentValues();
+
+        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_DESCRIPTION, description);
+        cv.put(COLUMN_TIME, time);
+        cv.put(COLUMN_DATE, date);
+        cv.put(COLUMN_LOCATION, location);
+
+        long result= db.update(TABLE_NAME, cv, "ID=?", new String[]{row_id});
+        if(result == -1 ){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Update successfully !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

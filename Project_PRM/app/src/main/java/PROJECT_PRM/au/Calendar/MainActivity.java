@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
+        //lấy data từ database
+        db= new DBOpenHelper(MainActivity.this);
+        storeDataInArray();
+
        // tao permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
             if(ContextCompat.checkSelfPermission(MainActivity.this,
@@ -58,8 +62,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                         new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, 101);
             }
         }
-        //db= new DBOpenHelper(MainActivity.this);
-        //storeDataInArray();
+
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
@@ -86,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         }else{
             if(Event.eventsList.isEmpty()){
                 while (cursor.moveToNext()){
-                    Event newEvent = new Event(cursor.getString(0), LocalDate.parse(cursor.getString(3)), LocalTime.parse(cursor.getString(2)));
+
+                    Event newEvent = new Event(cursor.getString(1), LocalDate.parse(cursor.getString(4)), LocalTime.parse(cursor.getString(3)));
                     Event.eventsList.add(newEvent);
                 }
             }else{
@@ -94,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
         }
     }
+
 
     private void initWidgets()
     {
