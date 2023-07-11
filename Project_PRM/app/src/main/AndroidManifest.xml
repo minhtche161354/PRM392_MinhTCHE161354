@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".NotificationReceiver" />
     </application>
     <queries>
         <package android:name="PROJECT_PRM.au.PRM_Calendar" />

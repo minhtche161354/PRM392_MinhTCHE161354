@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         storeDataInArray();
 
        // tao permission
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             if(ContextCompat.checkSelfPermission(MainActivity.this,
                     Manifest.permission.FOREGROUND_SERVICE) != PackageManager.PERMISSION_GRANTED){
                 requestNotificationPermission();
@@ -185,11 +185,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
-    }
-
-    //start service
-    public void startService(View v){
-        Intent serviceIntent = new Intent(this, ForeGroundServices.class);
     }
 
 }
