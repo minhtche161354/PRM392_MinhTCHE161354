@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         });
     }
 
-    void storeDataInArray(){
+    public void storeDataInArray(){
         Cursor cursor= db.readEvents();
         if(cursor.getCount()==0){
             Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();

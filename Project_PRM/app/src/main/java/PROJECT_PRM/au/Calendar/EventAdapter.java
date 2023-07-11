@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,8 +31,42 @@ public class EventAdapter extends ArrayAdapter<Event>
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
-
+        Button editButtonCellTV = convertView.findViewById(R.id.EDITbutton);
+        Button deleteButtonCellTV = convertView.findViewById(R.id.DELbutton);
         String eventTitle = event.getName() +" "+ CalendarUtils.formattedTime(event.getTime());
+        editButtonCellTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!Event.eventsList.isEmpty()){
+
+                }
+            }
+        });
+        deleteButtonCellTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!Event.eventsList.isEmpty()){
+//                    for (Event e:Event.eventsList
+//                         ) {
+//                        if(e.getTime().equals(event.getTime())&&e.getName().equals(event.getName())){
+//                        Event.eventsList.remove(e);
+//                        }
+//                    }
+                    for(int i=0;i<Event.eventsList.size();i++){
+                        Event hold = Event.eventsList.get(i);
+                        if(hold.getName().equals(event.getName())
+                        &&hold.getTime().equals(event.getTime())){
+                            Event.eventsList.remove(hold);
+                            notifyDataSetChanged();
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+
+
         eventCellTV.setText(eventTitle);
         return convertView;
     }
