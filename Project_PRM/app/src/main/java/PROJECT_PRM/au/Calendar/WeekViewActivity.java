@@ -1,20 +1,25 @@
 package PROJECT_PRM.au.Calendar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static PROJECT_PRM.au.Calendar.CalendarUtils.daysInWeekArray;
 import static PROJECT_PRM.au.Calendar.CalendarUtils.monthYearFromDate;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
@@ -29,6 +34,27 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         setContentView(R.layout.activity_week_view);
         initWidgets();
         setWeekView();
+
+        BottomNavigationView actionBar = findViewById(R.id.action_bar);
+        actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(WeekViewActivity.this, MainActivity.class));
+                        break;
+                    case R.id.allListSchedule:
+                        Toast.makeText(WeekViewActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.dayListSchedule:
+                        Toast.makeText(WeekViewActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.setting:
+                        startActivity(new Intent(WeekViewActivity.this, SettingActivity.class));
+                        break;
+                }
+            }
+        });
     }
 
     private void initWidgets()

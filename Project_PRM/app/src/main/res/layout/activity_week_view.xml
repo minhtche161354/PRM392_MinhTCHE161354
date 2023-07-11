@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".WeekViewActivity">
+    <include layout="@layout/action_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
