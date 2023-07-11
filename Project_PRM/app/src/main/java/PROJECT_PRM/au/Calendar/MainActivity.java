@@ -149,33 +149,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
         startActivity(new Intent(this, EventEditActivity.class));
     }
 
-    // tao thong bao
-    public void makeNotification(String title, String text){
-        String channelID = "CHANNEL_ID_NOTFICATION";
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),
-                channelID);
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(title)
-                .setContentText(text)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
-            if(notificationChannel == null){
-                int importance = NotificationManager.IMPORTANCE_HIGH;
-                notificationChannel = new NotificationChannel(channelID, "description", importance);
-                notificationChannel.setLightColor(Color.GREEN);
-                notificationChannel.enableVibration(true);
-                notificationManager.createNotificationChannel(notificationChannel);
-            }
-        }
-
-        notificationManager.notify(0, builder.build());
-    }
 }
 
 
