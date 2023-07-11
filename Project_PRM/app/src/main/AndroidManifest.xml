@@ -3,7 +3,7 @@
     package="PROJECT_PRM.au.Calendar">
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".NotificationReceiver" />
     </application>
-
+    <queries>
+        <package android:name="PROJECT_PRM.au.PRM_Calendar" />
+    </queries>
 </manifest>

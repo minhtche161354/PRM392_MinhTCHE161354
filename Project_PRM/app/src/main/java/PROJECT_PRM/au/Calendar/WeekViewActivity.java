@@ -67,7 +67,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         DEL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 calendarRecyclerView.getAdapter().notifyDataSetChanged();
+
+                //notifyDataSetChanged();
+
             }
         });
         Edit.setOnClickListener(new View.OnClickListener() {
