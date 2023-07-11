@@ -46,12 +46,6 @@ public class EventAdapter extends ArrayAdapter<Event>
             @Override
             public void onClick(View view) {
                 if(!Event.eventsList.isEmpty()){
-//                    for (Event e:Event.eventsList
-//                         ) {
-//                        if(e.getTime().equals(event.getTime())&&e.getName().equals(event.getName())){
-//                        Event.eventsList.remove(e);
-//                        }
-//                    }
                     for(int i=0;i<Event.eventsList.size();i++){
                         Event hold = Event.eventsList.get(i);
                         if(hold.getName().equals(event.getName())
@@ -70,4 +64,22 @@ public class EventAdapter extends ArrayAdapter<Event>
         eventCellTV.setText(eventTitle);
         return convertView;
     }
+
+    public interface DataChangeListener {
+        void onDataChanged();
+    }
+
+//    private DataChangeListener dataChangeListener;
+//
+//    public void setDataChangeListener(DataChangeListener listener) {
+//        this.dataChangeListener = listener;
+//    }
+//    private void updateData() {
+//        // Cập nhật dữ liệu
+//
+//        // Gọi phương thức onDataChanged() để thông báo sự thay đổi
+//        if (dataChangeListener != null) {
+//            dataChangeListener.onDataChanged();
+//        }
+//    }
 }
