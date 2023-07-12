@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <receiver android:name=".NotificationReceiver" />
+        <service android:name=".ForegroundService" />
     </application>
     <queries>
         <package android:name="PROJECT_PRM.au.PRM_Calendar" />

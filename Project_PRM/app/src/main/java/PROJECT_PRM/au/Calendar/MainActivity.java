@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     private RecyclerView calendarRecyclerView;
 
     DBOpenHelper db;
+    private static final int  PERMISSION_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,11 +58,14 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
        // tao permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
             if(ContextCompat.checkSelfPermission(MainActivity.this,
-                    Manifest.permission.ACCESS_NOTIFICATION_POLICY) != PackageManager.PERMISSION_GRANTED){
+                    Manifest.permission.FOREGROUND_SERVICE) != PackageManager.PERMISSION_GRANTED){
                 ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.ACCESS_NOTIFICATION_POLICY}, 101);
+                        new String[]{Manifest.permission.FOREGROUND_SERVICE}, PERMISSION_REQUEST_CODE);
             }
         }
+        //tao foreground service
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
 
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -81,6 +85,20 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             }
         });
     }
+
+    // Phan hoi cua app sau khi chon permission
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if(requestCode == PERMISSION_REQUEST_CODE){
+//            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+//                    Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT);
+//            }
+//            else{
+//                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT);
+//            }
+//        }
+//    }
 
     public void storeDataInArray(){
         Cursor cursor= db.readEvents();
