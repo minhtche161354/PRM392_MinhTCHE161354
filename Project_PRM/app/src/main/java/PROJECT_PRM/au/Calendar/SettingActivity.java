@@ -1,5 +1,6 @@
 package PROJECT_PRM.au.Calendar;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,9 +19,12 @@ import androidx.lifecycle.ComputableLiveData;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class SettingActivity extends AppCompatActivity {
 
     SwitchCompat switchMode;
+    SwitchCompat switchNotification;
     boolean nightMode;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -31,6 +35,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.setting);
 
         switchMode = findViewById(R.id.switchMode);
+        switchNotification = findViewById(R.id.switchNotification);
 
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         nightMode = sharedPreferences.getBoolean("nightMode",false);
@@ -54,6 +59,21 @@ public class SettingActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
+
+        switchNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isForegroundServiceRunning()){
+                    Intent serviceIntent = new Intent(SettingActivity.this, ForegroundService.class);
+                     stopService(serviceIntent);
+                }
+                else{
+                    Intent serviceIntent = new Intent(SettingActivity.this, ForegroundService.class);
+                    startService(serviceIntent);
+                }
+            }
+        });
+
 
 
 //        switchMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -93,5 +113,17 @@ public class SettingActivity extends AppCompatActivity {
                 setContentView(R.layout.about_me);
             }
         });
+    }
+
+    public boolean isForegroundServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+
+        List<ActivityManager.RunningServiceInfo> runningServices = manager.getRunningServices(Integer.MAX_VALUE);
+        for (ActivityManager.RunningServiceInfo service : runningServices) {
+            if (ForegroundService.class.getName().equals(service.service.getClassName())) {
+                return service.foreground;
+            }
+        }
+        return false;
     }
 }
