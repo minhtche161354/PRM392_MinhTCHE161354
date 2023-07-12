@@ -41,10 +41,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(WeekViewActivity.this, MainActivity.class));
-                        break;
-                    case R.id.allListSchedule:
-                        Toast.makeText(WeekViewActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        finish();
                         break;
                     case R.id.dayListSchedule:
                         Toast.makeText(WeekViewActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();

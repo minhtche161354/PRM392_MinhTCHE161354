@@ -55,10 +55,7 @@ public class EventEditActivity extends AppCompatActivity
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(EventEditActivity.this, MainActivity.class));
-                        break;
-                    case R.id.allListSchedule:
-                        Toast.makeText(EventEditActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        finish();
                         break;
                     case R.id.dayListSchedule:
                         Toast.makeText(EventEditActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();

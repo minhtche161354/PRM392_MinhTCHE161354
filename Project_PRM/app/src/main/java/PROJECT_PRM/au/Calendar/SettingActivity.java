@@ -6,12 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.lifecycle.ComputableLiveData;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -41,15 +43,27 @@ public class SettingActivity extends AppCompatActivity {
                 if(nightMode){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     editor = sharedPreferences.edit();
-                    editor.putBoolean("nightMode",false);
+                    editor.putBoolean("nightMode", false);
                 }else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     editor = sharedPreferences.edit();
-                    editor.putBoolean("nightMode",true);
+                    editor.putBoolean("nightMode", true);
                 }
                 editor.apply();
             }
         });
+
+
+//        switchMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b){
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//                }else{
+//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//                }
+//            }
+//        });
 
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -57,14 +71,12 @@ public class SettingActivity extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(SettingActivity.this, MainActivity.class));
-                        break;
-                    case R.id.allListSchedule:
-                        Toast.makeText(SettingActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        finish();
                         break;
                     case R.id.dayListSchedule:
                         Toast.makeText(SettingActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
                         break;
+
                 }
             }
         });
