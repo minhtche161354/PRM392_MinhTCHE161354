@@ -57,7 +57,8 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
             android:thumb="@drawable/notification"
-            app:track="@drawable/track" />
+            app:track="@drawable/track"
+            android:checked="true"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
