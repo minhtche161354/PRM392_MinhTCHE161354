@@ -17,6 +17,7 @@ import java.util.List;
 
 public class EventAdapter extends ArrayAdapter<Event>
 {
+    DBOpenHelper db;
     public EventAdapter(@NonNull Context context, List<Event> events)
     {
         super(context, 0, events);
@@ -27,7 +28,6 @@ public class EventAdapter extends ArrayAdapter<Event>
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
         Event event = getItem(position);
-
         if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
@@ -52,15 +52,12 @@ public class EventAdapter extends ArrayAdapter<Event>
                         if(hold.getName().equals(event.getName())
                         &&hold.getTime().equals(event.getTime())){
                             Event.eventsList.remove(hold);
-
                             break;
                         }
                     }
                 }
             }
         });
-
-
 
         eventCellTV.setText(eventTitle);
         return convertView;

@@ -87,7 +87,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateEvent(String row_id, String title, String description, String time, String date, String location){
+    void updateEvent(String title0, String time0, String title, String description, String time, String date, String location){
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues cv= new ContentValues();
 
@@ -97,11 +97,21 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_LOCATION, location);
 
-        long result= db.update(TABLE_NAME, cv, "ID=?", new String[]{row_id});
+        long result= db.update(TABLE_NAME, cv, "title=? and time= ?", new String[]{title0, time0});
         if(result == -1 ){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(context, "Update successfully !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteEvent(String title, String time){
+        SQLiteDatabase db= this.getWritableDatabase();
+        long result= db.delete(TABLE_NAME, "title=? and time= ?", new String[]{title, time});
+        if(result == -1 ){
+            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Delete successfully !", Toast.LENGTH_SHORT).show();
         }
     }
 
