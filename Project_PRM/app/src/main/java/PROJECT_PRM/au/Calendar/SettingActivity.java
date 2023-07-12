@@ -74,6 +74,9 @@ public class SettingActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.dayListSchedule:
+                        Toast.makeText(SettingActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.setting:
                         Toast.makeText(SettingActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
                         break;
 

@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,9 +25,13 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventEditActivity extends AppCompatActivity
 {
@@ -84,10 +90,11 @@ public class EventEditActivity extends AppCompatActivity
         Event.eventsList.add(newEvent);
 
         //save xong tao thong bao
-        LocalDateTime localDateTime = LocalDateTime.of(CalendarUtils.selectedDate, time);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        String timeNotify = localDateTime.format(formatter);
-        makeNotification(timeNotify, eventName);
+        LocalDateTime selectedDateTime = LocalDateTime.of(CalendarUtils.selectedDate, time);
+        LocalDateTime currentDateTime = LocalDateTime.now();
+
+        long notificationTimeMillis = Duration.between(currentDateTime, selectedDateTime).toMillis();
+        scheduleNotification(notificationTimeMillis, eventName, Event.eventsList.size() - 1);
 
         //Cần thêm sqlite để save vô file
         mydb.saveEvent(eventName, null, time.toString(), CalendarUtils.selectedDate.toString(), null);
@@ -116,30 +123,14 @@ public class EventEditActivity extends AppCompatActivity
     }
 
     // tao thong bao
-    public void makeNotification(String title, String text){
-        String channelID = "CHANNEL_ID_NOTFICATION";
+    private void scheduleNotification(long notificationTimeMillis, String eventName, int notificationId) {
+        Intent notificationIntent = new Intent(getApplicationContext(), NotificationReceiver.class);
+        notificationIntent.putExtra("eventName", eventName);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),
-                channelID);
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(title)
-                .setContentText(text)
-                .setAutoCancel(true)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),
+                notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.BASE){
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
-            if(notificationChannel == null){
-                int importance = NotificationManager.IMPORTANCE_HIGH;
-                notificationChannel = new NotificationChannel(channelID, "description", importance);
-                notificationChannel.setLightColor(Color.GREEN);
-                notificationChannel.enableVibration(true);
-                notificationManager.createNotificationChannel(notificationChannel);
-            }
-        }
-
-        notificationManager.notify(0, builder.build());
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis() + notificationTimeMillis, pendingIntent);
     }
 }

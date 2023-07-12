@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,19 +22,22 @@ import static PROJECT_PRM.au.Calendar.CalendarUtils.monthYearFromDate;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
+public class WeekViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, EventAdapter.DataChange
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
+
+    private Button DEL,Edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_view);
-        initWidgets();
+        Binding();
         setWeekView();
+
 
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -44,7 +48,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                         finish();
                         break;
                     case R.id.dayListSchedule:
-                        Toast.makeText(WeekViewActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WeekViewActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.setting:
                         startActivity(new Intent(WeekViewActivity.this, SettingActivity.class));
@@ -54,11 +58,30 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         });
     }
 
-    private void initWidgets()
+
+
+    private void ActionLmao(){
+        DEL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setEventAdpater();
+                //notifyDataSetChanged();
+            }
+        });
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setEventAdpater();
+            }
+        });
+    }
+    private void Binding()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
+        DEL = findViewById(R.id.DELbutton);
+        Edit = findViewById(R.id.DELbutton);
     }
 
     private void setWeekView()
@@ -110,5 +133,10 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
+    }
+
+    @Override
+    public void DELCLICK(int position, LocalDate date) {
+
     }
 }
