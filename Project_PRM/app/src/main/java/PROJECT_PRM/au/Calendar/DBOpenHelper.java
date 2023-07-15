@@ -105,13 +105,15 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteEvent(String title, String time){
+    long deleteEvent(String title, String time, String date){
         SQLiteDatabase db= this.getWritableDatabase();
-        long result= db.delete(TABLE_NAME, "title=? and time= ?", new String[]{title, time});
+        long result= db.delete(TABLE_NAME, "title=? AND time=? AND date=?", new String[]{title, time, date});
         if(result == -1 ){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
+            return -1;
         }else{
             Toast.makeText(context, "Delete successfully !", Toast.LENGTH_SHORT).show();
+            return 1;
         }
     }
 

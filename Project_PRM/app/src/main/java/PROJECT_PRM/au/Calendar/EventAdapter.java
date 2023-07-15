@@ -18,9 +18,12 @@ import java.util.List;
 public class EventAdapter extends ArrayAdapter<Event>
 {
     DBOpenHelper db;
+
+    long result;
     public EventAdapter(@NonNull Context context, List<Event> events)
     {
         super(context, 0, events);
+        this.db= new DBOpenHelper(context.getApplicationContext());
     }
 
     @NonNull
@@ -50,9 +53,16 @@ public class EventAdapter extends ArrayAdapter<Event>
                     for(int i=0;i<Event.eventsList.size();i++){
                         Event hold = Event.eventsList.get(i);
                         if(hold.getName().equals(event.getName())
-                        &&hold.getTime().equals(event.getTime())){
-                            Event.eventsList.remove(hold);
+                        &&hold.getTime().equals(event.getTime())
+                        &&hold.getDate().equals(event.getDate())){
+                            //Event.eventsList.remove(hold);
+                            result = db.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
                             break;
+                        }
+                    }
+                    if(result != -1){
+                        if(dataChange != null){
+                            dataChange.onEventDeleted();
                         }
                     }
                 }
@@ -63,22 +73,15 @@ public class EventAdapter extends ArrayAdapter<Event>
         return convertView;
     }
 
-    public interface  DataChange
+    private DataChange dataChange;
+
+    public interface DataChange
     {
-        void DELCLICK(int position, LocalDate date);
+        void onEventDeleted();
+        void onEventUpdated();
     }
 
-//    private DataChangeListener dataChangeListener;
-//
-//    public void setDataChangeListener(DataChangeListener listener) {
-//        this.dataChangeListener = listener;
-//    }
-//    private void updateData() {
-//        // Cập nhật dữ liệu
-//
-//        // Gọi phương thức onDataChanged() để thông báo sự thay đổi
-//        if (dataChangeListener != null) {
-//            dataChangeListener.onDataChanged();
-//        }
-//    }
+    public void setDataChange(DataChange listener){
+        this.dataChange= listener;
+    }
 }
