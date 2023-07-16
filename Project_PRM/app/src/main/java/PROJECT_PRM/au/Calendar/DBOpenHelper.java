@@ -76,17 +76,6 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    Cursor getEvent(String title, String time, String date){
-        SQLiteDatabase db= this.getReadableDatabase();
-        String query= "SELECT * FROM "+ TABLE_NAME+" WHERE title= "+ title+ " AND time= "+ time+" AND date= "+date+" ";
-
-        Cursor cursor= null;
-        if(db!= null){
-            cursor= db.rawQuery(query, null);
-        }
-        return cursor;
-    }
-
     Cursor readEvents() {
         SQLiteDatabase db= this.getReadableDatabase();
         String query= "SELECT * FROM "+ TABLE_NAME ;
@@ -98,11 +87,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-<<<<<<< Updated upstream
     void updateEvent(String row_id, String title, String description, String time, String date, String location){
-=======
-    void updateEvent(String title0, String time0, String date0, String title, String description, String time, String date, String location){
->>>>>>> Stashed changes
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues cv= new ContentValues();
 
@@ -112,11 +97,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_LOCATION, location);
 
-<<<<<<< Updated upstream
         long result= db.update(TABLE_NAME, cv, "ID=?", new String[]{row_id});
-=======
-        long result= db.update(TABLE_NAME, cv, "title=? AND time=? AND date=? ", new String[]{title0, time0, date0});
->>>>>>> Stashed changes
         if(result == -1 ){
             Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show();
         }else{
