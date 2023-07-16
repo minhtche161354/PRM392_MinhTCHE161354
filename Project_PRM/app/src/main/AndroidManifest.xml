@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="PROJECT_PRM.au.Calendar">
 
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <queries>
+        <package android:name="PROJECT_PRM.au.PRM_Calendar" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -11,18 +16,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarAppExample">
+<<<<<<< Updated upstream
         <activity android:name="PROJECT_PRM.au.Calendar.EventEditActivity"></activity>
         <activity android:name="PROJECT_PRM.au.Calendar.WeekViewActivity" />
         <activity android:name="PROJECT_PRM.au.Calendar.MainActivity" android:exported="true">
+=======
+        <activity
+            android:name=".EventUpdateActivity"
+            android:exported="false" />
+        <activity android:name=".EventEditActivity" />
+        <activity android:name=".WeekViewActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+>>>>>>> Stashed changes
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".NotificationReceiver" />
+<<<<<<< Updated upstream
+=======
+
+        <service android:name=".ForegroundService" />
+>>>>>>> Stashed changes
     </application>
-    <queries>
-        <package android:name="PROJECT_PRM.au.PRM_Calendar" />
-    </queries>
+
 </manifest>

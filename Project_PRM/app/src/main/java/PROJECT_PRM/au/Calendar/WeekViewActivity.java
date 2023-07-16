@@ -22,6 +22,11 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
 
+<<<<<<< Updated upstream
+=======
+//    private Button DEL,Edit;
+
+>>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -31,11 +36,37 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         setWeekView();
     }
 
+<<<<<<< Updated upstream
     private void initWidgets()
+=======
+
+
+//    private void ActionLmao(){
+//        DEL.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//                //notifyDataSetChanged();
+//            }
+//        });
+//        Edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//            }
+//        });
+//    }
+    private void Binding()
+>>>>>>> Stashed changes
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
+<<<<<<< Updated upstream
+=======
+//        DEL = findViewById(R.id.DELbutton);
+//        Edit = findViewById(R.id.DELbutton);
+>>>>>>> Stashed changes
     }
 
     private void setWeekView()
