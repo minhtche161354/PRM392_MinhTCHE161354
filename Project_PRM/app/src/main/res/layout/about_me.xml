@@ -24,14 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="App information"
+            android:text="Chào mừng bạn đến với ứng dụng lịch trình của chúng tôi! Đây là một ứng dụng tiện lợi và mạnh mẽ, được thiết kế để giúp bạn quản lý thời gian và sắp xếp công việc một cách hiệu quả. "
             android:textSize="20dp"
+            android:gravity="center"
             android:textStyle="italic"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="How to use"
-            android:textSize="20dp"/>
+            android:text="Với ứng dụng lịch trình của chúng tôi, bạn có thể dễ dàng tạo, chỉnh sửa và quản lý các sự kiện, nhiệm vụ, hẹn hò, và nhiều hơn thế nữa. Chúng tôi đã tích hợp các tính năng tiên tiến như nhắc nhở, đặt mục tiêu, và theo dõi tiến độ của công việc để đảm bảo rằng bạn luôn hoàn thành nhiệm vụ đúng hạn."
+            android:textSize="20dp"
+            android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>
