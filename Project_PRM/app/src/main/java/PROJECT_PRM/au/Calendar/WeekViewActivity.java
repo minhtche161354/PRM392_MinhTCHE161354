@@ -28,7 +28,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
 
-    private Button DEL,Edit;
+//    private Button DEL,Edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,28 +60,28 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
 
 
-    private void ActionLmao(){
-        DEL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setEventAdpater();
-                //notifyDataSetChanged();
-            }
-        });
-        Edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setEventAdpater();
-            }
-        });
-    }
+//    private void ActionLmao(){
+//        DEL.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//                //notifyDataSetChanged();
+//            }
+//        });
+//        Edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//            }
+//        });
+//    }
     private void Binding()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
-        DEL = findViewById(R.id.DELbutton);
-        Edit = findViewById(R.id.DELbutton);
+//        DEL = findViewById(R.id.DELbutton);
+//        Edit = findViewById(R.id.DELbutton);
     }
 
     private void setWeekView()
@@ -128,17 +128,17 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);
-        eventAdapter.setDataChange(new EventAdapter.DataChange() {
-            @Override
-            public void onEventDeleted() {
-                eventListView.setAdapter(eventAdapter);
-            }
-
-            @Override
-            public void onEventUpdated() {
-                eventListView.setAdapter(eventAdapter);
-            }
-        });
+//        eventAdapter.setDataChange(new EventAdapter.DataChange() {
+//            @Override
+//            public void onEventDeleted() {
+//                eventListView.setAdapter(eventAdapter);
+//            }
+//
+//            @Override
+//            public void onEventUpdated() {
+//                eventListView.setAdapter(eventAdapter);
+//            }
+//        });
     }
 
     public void newEventAction(View view)
