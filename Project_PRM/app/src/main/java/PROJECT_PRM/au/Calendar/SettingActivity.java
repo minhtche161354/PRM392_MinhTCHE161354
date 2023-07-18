@@ -95,12 +95,10 @@ public class SettingActivity extends AppCompatActivity {
                     case R.id.home:
                         finish();
                         break;
-                    case R.id.dayListSchedule:
-                        Toast.makeText(SettingActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                    case R.id.allListSchedule:
+                        startActivity(new Intent(SettingActivity.this, AllEventActivity.class));
                         break;
-                    case R.id.setting:
-                        Toast.makeText(SettingActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
-                        break;
+
 
                 }
             }
