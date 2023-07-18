@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 
                         break;
                     case R.id.dayListSchedule:
-                        Toast.makeText(MainActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, AllEventActivity.class));
                         break;
                     case R.id.setting:
                         startActivity(new Intent(MainActivity.this, SettingActivity.class));
