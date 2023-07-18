@@ -1,20 +1,22 @@
 package PROJECT_PRM.au.Calendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.ArrayList;
+=======
+>>>>>>> f4cd5f9ed7cace2cf0b14bfd05b61ebee1377f52
 import java.util.List;
 class EventVH extends RecyclerView.ViewHolder{
     private EventAdapter adapter;
@@ -55,14 +57,16 @@ class EventVH extends RecyclerView.ViewHolder{
 //}
 public class EventAdapter extends ArrayAdapter<Event>
 {
+<<<<<<< HEAD
     DBOpenHelper db;
     EventAdapter adapter = this;
 
     long result;
+=======
+>>>>>>> f4cd5f9ed7cace2cf0b14bfd05b61ebee1377f52
     public EventAdapter(@NonNull Context context, List<Event> events)
     {
         super(context, 0, events);
-        this.db= new DBOpenHelper(context.getApplicationContext());
     }
 
     @NonNull
@@ -70,16 +74,18 @@ public class EventAdapter extends ArrayAdapter<Event>
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
         Event event = getItem(position);
+
         if (convertView == null)
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
-        Button editButtonCellTV = convertView.findViewById(R.id.EDITbutton);
-        Button deleteButtonCellTV = convertView.findViewById(R.id.DELbutton);
+//        Button editButtonCellTV = convertView.findViewById(R.id.EDITbutton);
+//        Button deleteButtonCellTV = convertView.findViewById(R.id.DELbutton);
         String eventTitle = event.getName() +" "+ CalendarUtils.formattedTime(event.getTime());
-        editButtonCellTV.setOnClickListener(new View.OnClickListener() {
+        eventCellTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 if(!Event.eventsList.isEmpty()){
 
                 }
@@ -106,22 +112,47 @@ public class EventAdapter extends ArrayAdapter<Event>
                         }
                     }
                 }
+=======
+                Intent intent= new Intent(getContext().getApplicationContext(), EventUpdateActivity.class);
+                intent.putExtra("title", event.getName());
+                intent.putExtra("date", event.getDate().toString());
+                intent.putExtra("time", event.getTime().toString());
+                getContext().startActivity(intent);
+>>>>>>> f4cd5f9ed7cace2cf0b14bfd05b61ebee1377f52
             }
         });
+//        editButtonCellTV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!Event.eventsList.isEmpty()){
+//
+//                }
+//            }
+//        });
+//        deleteButtonCellTV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!Event.eventsList.isEmpty()){
+//                    for(int i=0;i<Event.eventsList.size();i++){
+//                        Event hold = Event.eventsList.get(i);
+//                        if(hold.getName().equals(event.getName())
+//                        &&hold.getTime().equals(event.getTime())
+//                        &&hold.getDate().equals(event.getDate())){
+//                            //Event.eventsList.remove(hold);
+//                            result = db.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
+//                            break;
+//                        }
+//                    }
+//                    if(result != -1){
+//                        if(dataChange != null){
+//                            dataChange.onEventDeleted();
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
         eventCellTV.setText(eventTitle);
         return convertView;
-    }
-
-    private DataChange dataChange;
-
-    public interface DataChange
-    {
-        void onEventDeleted();
-        void onEventUpdated();
-    }
-
-    public void setDataChange(DataChange listener){
-        this.dataChange= listener;
     }
 }

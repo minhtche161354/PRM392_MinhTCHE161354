@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="60dp">
 
@@ -12,24 +12,24 @@
         android:layout_marginStart="20dp"
         android:id="@+id/eventCellTV"
         android:textSize="20sp"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
         android:text="Event"/>
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         />
-    <Button
-        android:layout_gravity="left"
-        android:layout_width="60dp"
-        android:layout_height="match_parent"
-        android:text="DEL"
-        android:id="@+id/DELbutton"/>
-    <Button
-        android:layout_gravity="end"
-        android:layout_marginEnd="10dp"
-        android:layout_width="60dp"
-        android:layout_height="match_parent"
-        android:text="EDIT"
-        android:id="@+id/EDITbutton"/>
+    <!--    <Button-->
+    <!--        android:layout_gravity="left"-->
+    <!--        android:layout_width="60dp"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:text="DEL"-->
+    <!--        android:id="@+id/DELbutton"/>-->
+    <!--    <Button-->
+    <!--        android:layout_gravity="end"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:layout_width="60dp"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:text="EDIT"-->
+    <!--        android:id="@+id/EDITbutton"/>-->
 </LinearLayout>
