@@ -56,6 +56,7 @@ public class EventUpdateActivity extends AppCompatActivity
         Binding();
         getAndSetIntentData();
 
+
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
@@ -90,14 +91,14 @@ public class EventUpdateActivity extends AppCompatActivity
             time0= getIntent().getStringExtra("time");
 
             eventNameET.setText(title0);
-            eventDateTV.setText(date0);
-            eventTimeTV.setText(time0);
+            eventDateTV.setText("Date: " + CalendarUtils.formattedDate(LocalDate.parse(date0)));
+            eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(LocalTime.parse(time0)));
         }else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void UpdateEventAction(View view)
+    public void updateEventAction(View view)
     {
         DBOpenHelper mydb= new DBOpenHelper(this);
         String eventName = eventNameET.getText().toString();

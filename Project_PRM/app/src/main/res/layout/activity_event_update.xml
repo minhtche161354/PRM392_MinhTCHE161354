@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".EventEditActivity"
+    tools:context=".EventUpdateActivity"
     style="@style/ScreenBackground">
     <include layout="@layout/action_bar"/>
     <TextView
@@ -63,7 +63,7 @@
             style="@style/ButtonColor"
             android:background="@null"
             android:textStyle="bold"
-            android:onClick="saveEventAction"
+            android:onClick="updateEventAction"
             android:layout_gravity="center"
             android:textSize="20sp"/>
         <Button

@@ -83,6 +83,7 @@ public class EventAdapter extends ArrayAdapter<Event>
             public void onClick(View view) {
                 if(!Event.eventsList.isEmpty()){
                     Intent intent= new Intent(getContext(), EventUpdateActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("title", String.valueOf(event.getName()));
                     intent.putExtra("date", String.valueOf(event.getDate()));
                     intent.putExtra("time", String.valueOf(event.getTime()));
