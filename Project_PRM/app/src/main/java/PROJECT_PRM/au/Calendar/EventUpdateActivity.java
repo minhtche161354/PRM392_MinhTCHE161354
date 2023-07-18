@@ -51,7 +51,7 @@ public class EventUpdateActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_edit);
+        setContentView(R.layout.activity_event_update);
 
         Binding();
         getAndSetIntentData();
@@ -78,7 +78,7 @@ public class EventUpdateActivity extends AppCompatActivity
     private void Binding()
     {
         TimeEditBtn = findViewById(R.id.TimeEditBtn);
-        etEventName = findViewById(R.id.etEventName);
+        etEventName= findViewById(R.id.etEventName);
         tvEventDate = findViewById(R.id.tvEventDate);
         tvEventTime = findViewById(R.id.tvEventTime);
     }
