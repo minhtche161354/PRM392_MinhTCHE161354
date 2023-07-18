@@ -128,7 +128,8 @@ public class EventEditActivity extends AppCompatActivity
         notificationIntent.putExtra("eventName", eventName);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                //notificationId, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationId, notificationIntent, PendingIntent.FLAG_MUTABLE |PendingIntent.FLAG_MUTABLE);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis() + notificationTimeMillis, pendingIntent);

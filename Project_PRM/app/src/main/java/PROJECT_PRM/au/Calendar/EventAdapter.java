@@ -11,13 +11,52 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+class EventVH extends RecyclerView.ViewHolder{
+    private EventAdapter adapter;
+    public EventVH(@NonNull View itemView) {
+        super(itemView);
+        itemView = itemView.findViewById(R.id.eventCellTV);
+        itemView.findViewById(R.id.DELbutton).setOnClickListener(view -> {
 
+        });
+    }
+    public EventVH linkAdapter(EventAdapter adapter){
+        this.adapter = adapter;
+        return this;
+    }
+}
+//public class EventAdapter extends RecyclerView.Adapter<EventVH>{
+//    List<Event> events;
+//    public EventAdapter(List<Event> events){
+//        this.events = events;
+//    }
+//    @NonNull
+//    @Override
+//    public EventVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//        View view = LayoutInflater.from(parent.getContext())
+//                .inflate(R.layout.event_cell,parent,false);
+//        return new EventVH(view).linkAdapter(this);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(@NonNull EventVH holder, int position) {
+//        holder.itemView.text
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return events.size();
+//    }
+//}
 public class EventAdapter extends ArrayAdapter<Event>
 {
     DBOpenHelper db;
+    EventAdapter adapter = this;
 
     long result;
     public EventAdapter(@NonNull Context context, List<Event> events)
@@ -32,7 +71,7 @@ public class EventAdapter extends ArrayAdapter<Event>
     {
         Event event = getItem(position);
         if (convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
+            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
         Button editButtonCellTV = convertView.findViewById(R.id.EDITbutton);
@@ -55,7 +94,8 @@ public class EventAdapter extends ArrayAdapter<Event>
                         if(hold.getName().equals(event.getName())
                         &&hold.getTime().equals(event.getTime())
                         &&hold.getDate().equals(event.getDate())){
-                            //Event.eventsList.remove(hold);
+
+                            Event.eventsList.remove(i);
                             result = db.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
                             break;
                         }

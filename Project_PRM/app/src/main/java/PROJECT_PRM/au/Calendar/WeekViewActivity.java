@@ -60,21 +60,21 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
 
 
-    private void ActionLmao(){
-        DEL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setEventAdpater();
-                //notifyDataSetChanged();
-            }
-        });
-        Edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setEventAdpater();
-            }
-        });
-    }
+//    private void ActionLmao(){
+//        DEL.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//                //notifyDataSetChanged();
+//            }
+//        });
+//        Edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setEventAdpater();
+//            }
+//        });
+//    }
     private void Binding()
     {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
