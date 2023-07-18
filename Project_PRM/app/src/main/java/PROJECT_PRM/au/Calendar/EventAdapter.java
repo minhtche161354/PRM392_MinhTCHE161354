@@ -60,18 +60,43 @@ public class EventAdapter extends ArrayAdapter<Event>
     DBOpenHelper db;
     EventAdapter adapter = this;
     List<Event> events;
+    Context context;
     long result;
     public EventAdapter(@NonNull Context context, List<Event> events)
     {
         super(context, 0, events);
         this.db= new DBOpenHelper(context.getApplicationContext());
         this.events = events;
+        this.context = context;
     }
-    public void eventSetter(){
+    private static class ViewHolder{
+        TextView eventName;
+        Button deleteButton;
+        Button editButton;
 
     }
     @NonNull
     @Override
+//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
+//        try{
+//            ViewHolder viewHolder;
+//            if(convertView == null){
+//                viewHolder = new ViewHolder();
+//                viewHolder.eventName = convertView.findViewById(R.id.eventCellTV);
+//                viewHolder.deleteButton = convertView.findViewById(R.id.DELbutton);
+//                viewHolder.editButton = convertView.findViewById(R.id.EDITbutton);
+//
+//                Event event = getItem(position);
+//                viewHolder.eventName.setText(event.getName());
+//            }else{
+//
+//            }
+//            return convertView;
+//        }catch(Exception ex){
+//
+//        }
+//        return null;
+//    }
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
         Event event = getItem(position);
@@ -86,12 +111,12 @@ public class EventAdapter extends ArrayAdapter<Event>
             @Override
             public void onClick(View view) {
                 if(!Event.eventsList.isEmpty()){
-                    Intent intent= new Intent(getContext(), EventUpdateActivity.class);
+                    Intent intent= new Intent(parent.getContext(), EventUpdateActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("title", String.valueOf(event.getName()));
                     intent.putExtra("date", String.valueOf(event.getDate()));
                     intent.putExtra("time", String.valueOf(event.getTime()));
-                    getContext().startActivity(intent);
+                    parent.getContext().startActivity(intent);
                 }
             }
         });
