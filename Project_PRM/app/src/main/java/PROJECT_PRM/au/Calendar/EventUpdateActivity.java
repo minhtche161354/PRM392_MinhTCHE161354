@@ -36,10 +36,10 @@ import java.util.List;
 
 public class EventUpdateActivity extends AppCompatActivity
 {
-    private EditText eventNameET;
-    private TextView eventDateTV, eventTimeTV;
+    private EditText eventNameET1;
+    private TextView eventDateTV1, eventTimeTV1;
 
-    private Button EditTimeButton;
+    private Button EditTimeButton1;
     int holdHour,holdMinute;
 
     private String holdChangedTime;
@@ -55,7 +55,6 @@ public class EventUpdateActivity extends AppCompatActivity
 
         Binding();
         getAndSetIntentData();
-
 
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
         actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -78,10 +77,10 @@ public class EventUpdateActivity extends AppCompatActivity
 
     private void Binding()
     {
-        EditTimeButton = findViewById(R.id.TimeEditButton);
-        eventNameET = findViewById(R.id.eventNameET);
-        eventDateTV = findViewById(R.id.eventDateTV);
-        eventTimeTV = findViewById(R.id.eventTimeTV);
+        EditTimeButton1 = findViewById(R.id.TimeEditButton1);
+        eventNameET1 = findViewById(R.id.eventNameET1);
+        eventDateTV1 = findViewById(R.id.eventDateTV1);
+        eventTimeTV1 = findViewById(R.id.eventTimeTV1);
     }
 
     public void getAndSetIntentData(){
@@ -90,9 +89,9 @@ public class EventUpdateActivity extends AppCompatActivity
             date0= getIntent().getStringExtra("date");
             time0= getIntent().getStringExtra("time");
 
-            eventNameET.setText(title0);
-            eventDateTV.setText("Date: " + CalendarUtils.formattedDate(LocalDate.parse(date0)));
-            eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(LocalTime.parse(time0)));
+            eventNameET1.setText(title0);
+            eventDateTV1.setText("Date: " + CalendarUtils.formattedDate(LocalDate.parse(date0)));
+            eventTimeTV1.setText("Time: " + CalendarUtils.formattedTime(LocalTime.parse(time0)));
         }else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
@@ -101,21 +100,21 @@ public class EventUpdateActivity extends AppCompatActivity
     public void updateEventAction(View view)
     {
         DBOpenHelper mydb= new DBOpenHelper(this);
-        String eventName = eventNameET.getText().toString();
+        String eventName = eventNameET1.getText().toString();
         Event selectedEvent= Event.getEvent(title0, LocalDate.parse(date0), LocalTime.parse(time0));
         selectedEvent.setName(eventName);
-        selectedEvent.setDate(LocalDate.parse(eventDateTV.getText().toString()));
-        selectedEvent.setTime(LocalTime.parse(eventTimeTV.getText().toString()));
+        selectedEvent.setDate(LocalDate.parse(eventDateTV1.getText().toString()));
+        selectedEvent.setTime(LocalTime.parse(eventTimeTV1.getText().toString()));
 
         //save xong tao thong bao
-        LocalDateTime selectedDateTime = LocalDateTime.of(CalendarUtils.selectedDate, LocalTime.parse(eventTimeTV.getText().toString()));
+        LocalDateTime selectedDateTime = LocalDateTime.of(CalendarUtils.selectedDate, LocalTime.parse(eventTimeTV1.getText().toString()));
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         long notificationTimeMillis = Duration.between(currentDateTime, selectedDateTime).toMillis();
         scheduleNotification(notificationTimeMillis, eventName, Event.eventsList.size() - 1);
 
         //Cần thêm sqlite để save vô file
-        mydb.updateEvent(title0, time0, date0, eventName, null, eventTimeTV.getText().toString(), eventDateTV.getText().toString(), null);
+        mydb.updateEvent(title0, time0, date0, eventName, null, eventTimeTV1.getText().toString(), eventDateTV1.getText().toString(), null);
         finish();
     }
 
@@ -127,10 +126,10 @@ public class EventUpdateActivity extends AppCompatActivity
                 holdMinute = minute;
                 time = LocalTime.of(hour,minute);
                 if(holdHour==0){
-                    eventTimeTV.setText("Time: " +"00"+CalendarUtils.formattedTime(time).substring(2));
+                    eventTimeTV1.setText("Time: " +"00"+CalendarUtils.formattedTime(time).substring(2));
                 }
                 else {
-                    eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+                    eventTimeTV1.setText("Time: " + CalendarUtils.formattedTime(time));
                 }
             }
         };
