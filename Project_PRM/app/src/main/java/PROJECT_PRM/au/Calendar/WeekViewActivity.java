@@ -47,7 +47,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                     case R.id.home:
                         finish();
                         break;
-                    case R.id.dayListSchedule:
+                    case R.id.allListSchedule:
                         startActivity(new Intent(WeekViewActivity.this, AllEventActivity.class));
                         break;
                     case R.id.setting:

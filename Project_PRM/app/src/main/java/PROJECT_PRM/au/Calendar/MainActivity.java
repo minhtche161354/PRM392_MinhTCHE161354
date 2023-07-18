@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                     case R.id.home:
 
                         break;
-                    case R.id.dayListSchedule:
+                    case R.id.allListSchedule:
                         startActivity(new Intent(MainActivity.this, AllEventActivity.class));
                         break;
                     case R.id.setting:

@@ -5,7 +5,7 @@
         android:title="Home"
         android:icon="@drawable/baseline_home_24"/>
     <item
-        android:id="@+id/dayListSchedule"
+        android:id="@+id/allListSchedule"
         android:title="All Schedule"
         android:icon="@drawable/twotone_calendar_month_24"/>
 

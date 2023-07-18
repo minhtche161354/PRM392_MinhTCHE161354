@@ -63,7 +63,7 @@ public class EventEditActivity extends AppCompatActivity
                     case R.id.home:
                         finish();
                         break;
-                    case R.id.dayListSchedule:
+                    case R.id.allListSchedule:
                         startActivity(new Intent(EventEditActivity.this, AllEventActivity.class));
                         break;
                     case R.id.setting:

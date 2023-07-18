@@ -27,9 +27,9 @@ public class AllEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_event);
 
-        eventListView = findViewById(R.id.eventListView);
-        eventAdapter = new EventAdapter(this, eventList);
-        eventListView.setAdapter(eventAdapter);
+//        eventListView = findViewById(R.id.eventListView);
+//        eventAdapter = new EventAdapter(this, eventList);
+//        eventListView.setAdapter(eventAdapter);
 
         //tao foreground service
         Intent serviceIntent = new Intent(this, ForegroundService.class);
@@ -41,9 +41,7 @@ public class AllEventActivity extends AppCompatActivity {
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(AllEventActivity.this, MainActivity.class));
-                        break;
-                    case R.id.dayListSchedule:
+                        finish();
                         break;
                     case R.id.setting:
                         startActivity(new Intent(AllEventActivity.this, SettingActivity.class));
