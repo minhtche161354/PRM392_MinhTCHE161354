@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".EventUpdateActivity"
     style="@style/ScreenBackground">
     <include layout="@layout/action_bar"/>
@@ -13,11 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Name:"
+        android:text="Name: "
         android:textSize="20sp"
         android:textAlignment="center"
         style="@style/TextColor"/>
-
     <EditText
         style="@style/TextColor"
         android:hint="EnterNewName"
@@ -30,9 +28,9 @@
         android:inputType="text"/>
 
     <TextView
-        android:id="@+id/eventDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tvEventDate"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Date"
@@ -41,9 +39,9 @@
         style="@style/TextColor"/>
 
     <TextView
-        android:id="@+id/eventTimeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tvEventTime"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="Time"
@@ -55,31 +53,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center">
+
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:text="Update"
-            style="@style/ButtonColor"
-
+            android:background="@null"
             android:textStyle="bold"
             android:onClick="updateEventAction"
             android:layout_gravity="center"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            style="@style/ButtonColor"/>
+
         <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/TimeEditButton"
-            android:layout_marginStart="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="EditTime"
-            style="@style/ButtonColor"
-
+            android:id="@+id/TimeEditBtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Edit Time"
+            android:background="@null"
             android:textStyle="bold"
             android:onClick="popTimePick"
             android:layout_gravity="center"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            style="@style/ButtonColor"/>
+
     </LinearLayout>
+
+
 
 </LinearLayout>
