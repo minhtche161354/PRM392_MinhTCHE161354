@@ -1,6 +1,7 @@
 package PROJECT_PRM.au.Calendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,11 @@ public class EventAdapter extends ArrayAdapter<Event>
             @Override
             public void onClick(View view) {
                 if(!Event.eventsList.isEmpty()){
-
+                    Intent intent= new Intent(getContext(), EventUpdateActivity.class);
+                    intent.putExtra("title", String.valueOf(event.getName()));
+                    intent.putExtra("date", String.valueOf(event.getDate()));
+                    intent.putExtra("time", String.valueOf(event.getTime()));
+                    getContext().startActivity(intent);
                 }
             }
         });

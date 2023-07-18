@@ -62,4 +62,14 @@ public class Event
     {
         this.time = time;
     }
+
+    public static Event getEvent(String name, LocalDate date, LocalTime time){
+        for(Event event : eventsList)
+        {
+            if(event.getName().equals(name) && event.getDate().equals(date) && event.getTime().equals(time))
+                return event;
+        }
+
+        return null;
+    }
 }
