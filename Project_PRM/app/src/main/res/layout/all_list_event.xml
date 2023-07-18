@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/ScreenBackground">
+
+    <include layout="@layout/action_bar"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Need To-do:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        style="@style/TextColor"/>
+
+    <ListView
+
+        android:id="@+id/TodoEventListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"/>
+
+</LinearLayout>

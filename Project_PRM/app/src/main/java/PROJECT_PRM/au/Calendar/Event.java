@@ -20,6 +20,17 @@ public class Event
 
         return events;
     }
+    public static ArrayList<Event> todoEvents(LocalDate date)
+    {
+        ArrayList<Event> events = new ArrayList<>();
+
+        for(Event event : eventsList)
+        {
+                if(event.getDate().isAfter(date)||event.getDate().equals(date))
+                    events.add(event);
+        }
+        return events;
+    }
 
 
     private String name;

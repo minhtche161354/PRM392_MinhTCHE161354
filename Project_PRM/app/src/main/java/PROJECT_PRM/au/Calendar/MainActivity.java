@@ -72,9 +72,6 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.home:
-
-                        break;
                     case R.id.allListSchedule:
                         startActivity(new Intent(MainActivity.this, AllEventActivity.class));
                         break;
