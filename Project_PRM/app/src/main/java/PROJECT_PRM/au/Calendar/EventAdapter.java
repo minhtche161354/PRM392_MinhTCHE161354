@@ -1,5 +1,6 @@
 package PROJECT_PRM.au.Calendar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -58,14 +59,17 @@ public class EventAdapter extends ArrayAdapter<Event>
 {
     DBOpenHelper db;
     EventAdapter adapter = this;
-
+    List<Event> events;
     long result;
     public EventAdapter(@NonNull Context context, List<Event> events)
     {
         super(context, 0, events);
         this.db= new DBOpenHelper(context.getApplicationContext());
+        this.events = events;
     }
+    public void eventSetter(){
 
+    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)

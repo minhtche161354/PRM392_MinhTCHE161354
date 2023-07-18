@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -128,6 +129,13 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);
+        eventListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Object listItem = eventListView.getItemAtPosition(position);
+        }
+    });
         eventAdapter.setDataChange(new EventAdapter.DataChange() {
             @Override
             public void onEventDeleted() {
