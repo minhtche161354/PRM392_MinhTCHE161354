@@ -29,7 +29,7 @@ public class EventAllSchedule extends AppCompatActivity {
         nextPage = findViewById(R.id.nextPage);
 
         allSchedule = Event.getAllEventList();
-        pagination = new Pagination(5, allSchedule);
+        pagination = new Pagination(7, allSchedule);
         lastPage = pagination.getLastPage();
         updateData(currentPage);
 

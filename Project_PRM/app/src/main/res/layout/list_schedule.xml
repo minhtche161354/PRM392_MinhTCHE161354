@@ -15,13 +15,12 @@
         android:text="Next"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#0353F4"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.673"
         app:layout_constraintTop_toBottomOf="@+id/eventListViewAll"
         app:layout_constraintVertical_bias="0.562" />
 
@@ -31,8 +30,8 @@
 
     <TextView
         android:id="@+id/textViewTitle20"
-        android:layout_width="190dp"
-        android:layout_height="67dp"
+        android:layout_width="186dp"
+        android:layout_height="44dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-black"
         android:text="All Schedule"
@@ -49,9 +48,9 @@
     <ListView
 
         android:id="@+id/eventListViewAll"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginBottom="128dp"
+        android:layout_width="411dp"
+        android:layout_height="449dp"
+        android:layout_marginBottom="112dp"
         android:layout_weight="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +67,7 @@
         android:text="Previous"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#0353F4"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         android:typeface="normal"
