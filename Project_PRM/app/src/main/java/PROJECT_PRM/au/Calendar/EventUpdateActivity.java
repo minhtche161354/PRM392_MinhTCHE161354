@@ -51,7 +51,7 @@ public class EventUpdateActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_edit);
+        setContentView(R.layout.activity_event_update);
 
         Binding();
         getAndSetIntentData();
@@ -78,7 +78,7 @@ public class EventUpdateActivity extends AppCompatActivity
     private void Binding()
     {
         TimeEditBtn = findViewById(R.id.TimeEditBtn);
-        etEventName = findViewById(R.id.etEventName);
+        etEventName= findViewById(R.id.etEventName);
         tvEventDate = findViewById(R.id.tvEventDate);
         tvEventTime = findViewById(R.id.tvEventTime);
     }
@@ -103,15 +103,9 @@ public class EventUpdateActivity extends AppCompatActivity
         String eventName = etEventName.getText().toString();
         Event selectedEvent= Event.getEvent(title0, LocalDate.parse(date0), LocalTime.parse(time0));
         selectedEvent.setName(eventName);
-        selectedEvent.setDate(LocalDate.parse(tvEventDate.getText().toString()));
-        selectedEvent.setTime(LocalTime.parse(tvEventTime.getText().toString()));
+        selectedEvent.setDate(LocalDate.parse(tvEventDate.getText().toString().substring(6), DateTimeFormatter.ofPattern("dd MMMM yyyy")));
+        selectedEvent.setTime(LocalTime.parse(tvEventTime.getText().toString().substring(6), DateTimeFormatter.ofPattern("hh:mm:ss a")));
 
-        //save xong tao thong bao
-        LocalDateTime selectedDateTime = LocalDateTime.of(CalendarUtils.selectedDate, LocalTime.parse(tvEventTime.getText().toString()));
-        LocalDateTime currentDateTime = LocalDateTime.now();
-
-        long notificationTimeMillis = Duration.between(currentDateTime, selectedDateTime).toMillis();
-        scheduleNotification(notificationTimeMillis, eventName, Event.eventsList.size() - 1);
 
         //Cần thêm sqlite để save vô file
         mydb.updateEvent(title0, time0, date0, eventName, null, tvEventTime.getText().toString(), tvEventDate.getText().toString(), null);
