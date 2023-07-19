@@ -62,4 +62,8 @@ public class Event
     {
         this.time = time;
     }
+
+    public static ArrayList<Event> getAllEventList() {
+        return eventsList;
+    }
 }

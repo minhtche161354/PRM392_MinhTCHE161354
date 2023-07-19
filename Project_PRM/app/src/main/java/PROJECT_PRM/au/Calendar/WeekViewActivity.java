@@ -48,7 +48,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
                         finish();
                         break;
                     case R.id.dayListSchedule:
-                        Toast.makeText(WeekViewActivity.this, "Hiện list all schedule", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(WeekViewActivity.this, EventAllSchedule.class));
                         break;
                     case R.id.setting:
                         startActivity(new Intent(WeekViewActivity.this, SettingActivity.class));

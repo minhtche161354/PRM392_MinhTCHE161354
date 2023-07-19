@@ -73,10 +73,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-
                         break;
                     case R.id.dayListSchedule:
-                        Toast.makeText(MainActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, EventAllSchedule.class));
                         break;
                     case R.id.setting:
                         startActivity(new Intent(MainActivity.this, SettingActivity.class));

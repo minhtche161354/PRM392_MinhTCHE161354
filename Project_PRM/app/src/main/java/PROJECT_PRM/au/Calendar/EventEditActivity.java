@@ -64,7 +64,7 @@ public class EventEditActivity extends AppCompatActivity
                         finish();
                         break;
                     case R.id.dayListSchedule:
-                        Toast.makeText(EventEditActivity.this, "Hiện day schedule", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(EventEditActivity.this, EventAllSchedule.class));
                         break;
                     case R.id.setting:
                         startActivity(new Intent(EventEditActivity.this, SettingActivity.class));
