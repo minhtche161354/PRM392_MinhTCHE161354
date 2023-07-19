@@ -23,6 +23,22 @@ public class CalendarUtils
         return time.format(formatter);
     }
 
+    public static LocalDate stringToDate(String date){
+        if(date.substring(0,5).equals("Date: ")){
+            return LocalDate.parse(date.substring(6), DateTimeFormatter.ofPattern("dd MMMM yyyy"));
+        }else{
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+    }
+
+    public static LocalTime stringToTime(String time){
+        if(time.substring(0,5).equals("Time: ")){
+            return LocalTime.parse(time.substring(6), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        }else{
+            return LocalTime.parse(time);
+        }
+    }
+
     public static String monthYearFromDate(LocalDate date)
     {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");

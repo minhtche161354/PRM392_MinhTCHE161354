@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
             if(Event.eventsList.isEmpty()){
                 while (cursor.moveToNext()){
 
-                    Event newEvent = new Event(cursor.getString(1), LocalDate.parse(cursor.getString(4)), LocalTime.parse(cursor.getString(3)));
+                    Event newEvent = new Event(cursor.getString(1), CalendarUtils.stringToDate(cursor.getString(4)), CalendarUtils.stringToTime(cursor.getString(3)));
                     Event.eventsList.add(newEvent);
                 }
             }else{

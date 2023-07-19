@@ -145,4 +145,15 @@ public class EventUpdateActivity extends AppCompatActivity
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis() + notificationTimeMillis, pendingIntent);
     }
+
+    public void deleteEventAction(View view) {
+        DBOpenHelper mydb= new DBOpenHelper(this);
+        String eventName = etEventName.getText().toString();
+        Event selectedEvent= Event.getEvent(title0, LocalDate.parse(date0), LocalTime.parse(time0));
+        Event.eventsList.remove(selectedEvent);
+
+        //Cần thêm sqlite để save vô file
+        mydb.deleteEvent(title0, time0, date0);
+        finish();
+    }
 }
