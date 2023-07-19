@@ -63,6 +63,7 @@ public class Event
         this.time = time;
     }
 
+
     public static Event getEvent(String name, LocalDate date, LocalTime time){
         for(Event event : eventsList)
         {
@@ -71,5 +72,10 @@ public class Event
         }
 
         return null;
+
+
     }
+    public static ArrayList<Event> getAllEventList(){
+    return eventsList;
+     }
 }
