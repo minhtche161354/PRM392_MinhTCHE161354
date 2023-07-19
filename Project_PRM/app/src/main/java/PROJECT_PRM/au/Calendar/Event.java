@@ -78,4 +78,8 @@ public class Event
     public static ArrayList<Event> getAllEventList(){
     return eventsList;
      }
+     @Override
+     public String toString(){
+        return getName() +" "+ getDate() +" "+getTime();
+     }
 }

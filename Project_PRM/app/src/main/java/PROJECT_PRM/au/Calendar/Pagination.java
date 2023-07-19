@@ -20,11 +20,13 @@ class Pagination {
         ArrayList<Event> newPageData = new ArrayList<>();
         if(currentPage == lastPage){
             for(int count = 0; count < lastPageItem; count++){
+                if(listAllSchedule.size()<=count)break;
                 newPageData.add(listAllSchedule.get(startItem + count));
             }
         }
         else{
             for(int count = 0; count < itemsPerpage; count++){
+                if(listAllSchedule.size()<=count)break;
                 newPageData.add(listAllSchedule.get(startItem + count));
             }
         }

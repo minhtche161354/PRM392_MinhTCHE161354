@@ -1,13 +1,18 @@
 package PROJECT_PRM.au.Calendar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,27 @@ public class EventAllSchedule extends AppCompatActivity {
         updateData(currentPage);
 
         updateButton();
+
+
+        BottomNavigationView actionBar = findViewById(R.id.action_bar);
+        actionBar.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        finish();
+                        break;
+                    case R.id.dayListSchedule:
+
+                        break;
+                    case R.id.setting:
+                        finish();
+                        startActivity(new Intent(EventAllSchedule.this, SettingActivity.class));
+                        break;
+                }
+            }
+        });
+
 
         previousPage.setOnClickListener(new View.OnClickListener() {
             @Override
