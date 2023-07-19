@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class CalendarUtils
 {
@@ -13,19 +14,19 @@ public class CalendarUtils
 
     public static String formattedDate(LocalDate date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.ENGLISH);
         return date.format(formatter);
     }
 
     public static String formattedTime(LocalTime time)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", Locale.ENGLISH);
         return time.format(formatter);
     }
 
     public static String monthYearFromDate(LocalDate date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy",Locale.ENGLISH);
         return date.format(formatter);
     }
 
@@ -78,59 +79,9 @@ public class CalendarUtils
         return null;
     }
     public static LocalDate stringToLocalDate(String date){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.ENGLISH);
         try{
             String[] items = date.split(" ");
-//            switch (items[2]){
-//                case "January":{
-//                    items[2] = "01";
-//                    break;
-//                }
-//                case "February":{
-//                    items[2] = "02";
-//                    break;
-//                }
-//                case "March":{
-//                    items[2] = "03";
-//                    break;
-//                }
-//                case "April":{
-//                    items[2] = "04";
-//                    break;
-//                }
-//                case "May":{
-//                    items[2] = "05";
-//                    break;
-//                }
-//                case "June":{
-//                    items[2] = "06";
-//                    break;
-//                }
-//                case "July":{
-//                    items[2] = "07";
-//                    break;
-//                }
-//                case "August":{
-//                    items[2] = "08";
-//                    break;
-//                }
-//                case "September":{
-//                    items[2] = "09";
-//                    break;
-//                }
-//                case "October":{
-//                    items[2] = "10";
-//                    break;
-//                }
-//                case "November":{
-//                    items[2] = "11";
-//                    break;
-//                }
-//                case "December":{
-//                    items[2] = "12";
-//                    break;
-//                }
-//            }
             String end = items[1]+" "+items[2]+" "+items[3];
             return LocalDate.parse(end, formatter);
         }catch (Exception ex){
@@ -139,7 +90,7 @@ public class CalendarUtils
         return LocalDate.parse("01 January 2000",formatter);
     }
     public static LocalTime stringToLocalTime(String Time){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", Locale.ENGLISH);
         try{
             String[] items = Time.split(" ");
             String end = items[1]+" "+items[2];
