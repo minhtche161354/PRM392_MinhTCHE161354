@@ -101,8 +101,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 //    }
 
     public void storeDataInArray(){
-//        try{
+        try{
             Cursor cursor= db.readEvents();
+            Event.eventsList.clear();
             if(cursor.getCount()==0){
                 Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
             }else{
@@ -112,13 +113,11 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                         Event newEvent = new Event(cursor.getString(1), LocalDate.parse(cursor.getString(4)), LocalTime.parse(cursor.getString(3)));
                         Event.eventsList.add(newEvent);
                     }
-                }else{
-                    Event.eventsList.clear();
                 }
             }
-//        }catch (Exception ex){
-//
-//        }
+        }catch (Exception ex){
+
+        }
     }
 
 
