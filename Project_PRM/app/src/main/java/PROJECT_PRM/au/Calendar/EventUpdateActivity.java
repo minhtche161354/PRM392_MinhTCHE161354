@@ -78,7 +78,7 @@ public class EventUpdateActivity extends AppCompatActivity
     private void Binding()
     {
         TimeEditBtn = findViewById(R.id.TimeEditBtn);
-        etEventName= findViewById(R.id.etEventName);
+        etEventName= findViewById(R.id.eventNameET);
         tvEventDate = findViewById(R.id.tvEventDate);
         tvEventTime = findViewById(R.id.tvEventTime);
     }
