@@ -18,43 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-class EventVH extends RecyclerView.ViewHolder{
-    private EventAdapter adapter;
-    public EventVH(@NonNull View itemView) {
-        super(itemView);
-        itemView = itemView.findViewById(R.id.eventCellTV);
-        itemView.findViewById(R.id.DELbutton).setOnClickListener(view -> {
-
-        });
-    }
-    public EventVH linkAdapter(EventAdapter adapter){
-        this.adapter = adapter;
-        return this;
-    }
-}
-//public class EventAdapter extends RecyclerView.Adapter<EventVH>{
-//    List<Event> events;
-//    public EventAdapter(List<Event> events){
-//        this.events = events;
-//    }
-//    @NonNull
-//    @Override
-//    public EventVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        View view = LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.event_cell,parent,false);
-//        return new EventVH(view).linkAdapter(this);
-//    }
+//class EventVH extends RecyclerView.ViewHolder{
+//    private EventAdapter adapter;
+//    public EventVH(@NonNull View itemView) {
+//        super(itemView);
+//        itemView = itemView.findViewById(R.id.eventCellTV);
+//        itemView.findViewById(R.id.DELbutton).setOnClickListener(view -> {
 //
-//    @Override
-//    public void onBindViewHolder(@NonNull EventVH holder, int position) {
-//        holder.itemView.text
+//        });
 //    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return events.size();
+//    public EventVH linkAdapter(EventAdapter adapter){
+//        this.adapter = adapter;
+//        return this;
 //    }
 //}
+
 public class EventAdapter extends ArrayAdapter<Event>
 {
     DBOpenHelper db;
@@ -105,7 +83,7 @@ public class EventAdapter extends ArrayAdapter<Event>
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
         Button editButtonCellTV = convertView.findViewById(R.id.EDITbutton);
-        Button deleteButtonCellTV = convertView.findViewById(R.id.DELbutton);
+        //Button deleteButtonCellTV = convertView.findViewById(R.id.DELbutton);
         String eventTitle = event.getName() +" "+ CalendarUtils.formattedTime(event.getTime());
         editButtonCellTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,29 +98,29 @@ public class EventAdapter extends ArrayAdapter<Event>
                 }
             }
         });
-        deleteButtonCellTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!Event.eventsList.isEmpty()){
-                    for(int i=0;i<Event.eventsList.size();i++){
-                        Event hold = Event.eventsList.get(i);
-                        if(hold.getName().equals(event.getName())
-                        &&hold.getTime().equals(event.getTime())
-                        &&hold.getDate().equals(event.getDate())){
-
-                            Event.eventsList.remove(i);
-                            result = db.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
-                            break;
-                        }
-                    }
-                    if(result != -1){
-                        if(dataChange != null){
-                            dataChange.onEventDeleted();
-                        }
-                    }
-                }
-            }
-        });
+//        deleteButtonCellTV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!Event.eventsList.isEmpty()){
+//                    for(int i=0;i<Event.eventsList.size();i++){
+//                        Event hold = Event.eventsList.get(i);
+//                        if(hold.getName().equals(event.getName())
+//                        &&hold.getTime().equals(event.getTime())
+//                        &&hold.getDate().equals(event.getDate())){
+//
+//                            Event.eventsList.remove(i);
+//                            result = db.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
+//                            break;
+//                        }
+//                    }
+//                    if(result != -1){
+//                        if(dataChange != null){
+//                            dataChange.onEventDeleted();
+//                        }
+//                    }
+//                }
+//            }
+//        });
 
         eventCellTV.setText(eventTitle);
         return convertView;

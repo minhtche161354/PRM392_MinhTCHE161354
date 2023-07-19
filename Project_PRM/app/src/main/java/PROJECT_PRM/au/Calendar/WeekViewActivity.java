@@ -81,8 +81,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
-        DEL = findViewById(R.id.DELbutton);
-        Edit = findViewById(R.id.DELbutton);
+        //DEL = findViewById(R.id.DELbutton);
+        //Edit = findViewById(R.id.DELbutton);
     }
 
     private void setWeekView()

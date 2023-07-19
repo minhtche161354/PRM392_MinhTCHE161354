@@ -101,19 +101,23 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 //    }
 
     public void storeDataInArray(){
-        Cursor cursor= db.readEvents();
-        if(cursor.getCount()==0){
-            Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
-        }else{
-            if(Event.eventsList.isEmpty()){
-                while (cursor.moveToNext()){
-
-                    Event newEvent = new Event(cursor.getString(1), LocalDate.parse(cursor.getString(4)), LocalTime.parse(cursor.getString(3)));
-                    Event.eventsList.add(newEvent);
-                }
+        try{
+            Cursor cursor= db.readEvents();
+            if(cursor.getCount()==0){
+                Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
             }else{
-                Event.eventsList.clear();
+                if(Event.eventsList.isEmpty()){
+                    while (cursor.moveToNext()){
+
+                        Event newEvent = new Event(cursor.getString(1), LocalDate.parse(cursor.getString(4)), LocalTime.parse(cursor.getString(3)));
+                        Event.eventsList.add(newEvent);
+                    }
+                }else{
+                    Event.eventsList.clear();
+                }
             }
+        }catch (Exception ex){
+
         }
     }
 

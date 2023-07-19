@@ -111,6 +111,24 @@ public class EventUpdateActivity extends AppCompatActivity
         mydb.updateEvent(title0, time0, date0, eventName, null, tvEventTime.getText().toString(), tvEventDate.getText().toString(), null);
         finish();
     }
+    public void deleteEventAction(View view){
+        DBOpenHelper mydb= new DBOpenHelper(this);
+        if(!Event.eventsList.isEmpty()){
+            for(int i=0;i<Event.eventsList.size();i++){
+                Event hold = Event.eventsList.get(i);
+                Event holder = Event.getEvent(title0, LocalDate.parse(date0), LocalTime.parse(time0));
+                if(hold.getName().equals(holder.getName())
+                        &&hold.getTime().equals(holder.getTime())
+                        &&hold.getDate().equals(holder.getDate())){
+                    Event.eventsList.remove(i);
+                    mydb.deleteEvent(hold.getName(), hold.getTime().toString(), hold.getDate().toString());
+                    break;
+                }
+            }
+        }
+        finish();
+
+    }
 
     public void popTimePick(View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
