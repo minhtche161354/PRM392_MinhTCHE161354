@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarAppExample">
         <activity android:name="PROJECT_PRM.au.Calendar.EventEditActivity" android:exported="false"/>
+        <activity android:name="PROJECT_PRM.au.Calendar.EventUpdateActivity" android:exported="false"/>
         <activity android:name="PROJECT_PRM.au.Calendar.WeekViewActivity" android:exported="false"/>
         <activity android:name=".SettingActivity" android:exported="false"/>
         <activity android:name=".EventAllSchedule" android:exported="false"/>

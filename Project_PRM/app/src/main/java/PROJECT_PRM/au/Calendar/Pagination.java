@@ -11,7 +11,7 @@ class Pagination {
         this.itemsPerpage = itemsPerpage;
         this.listAllSchedule = listAllSchedule;
         int totalItems = listAllSchedule.size();
-        this.lastPage = totalItems / itemsPerpage + 1;
+        this.lastPage = totalItems / itemsPerpage;
         this.lastPageItem = totalItems % itemsPerpage;
     }
 
