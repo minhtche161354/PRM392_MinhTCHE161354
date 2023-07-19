@@ -38,7 +38,7 @@ public class EventAllSchedule extends AppCompatActivity {
         lastPage = pagination.getLastPage();
         updateData(currentPage);
 
-        updateButton();
+//        updateButton();
 
 
         BottomNavigationView actionBar = findViewById(R.id.action_bar);
@@ -78,7 +78,6 @@ public class EventAllSchedule extends AppCompatActivity {
         });
     }
 
-
     private void updateButton() {
         if(currentPage == 0){
             previousPage.setEnabled(false);
@@ -97,5 +96,7 @@ public class EventAllSchedule extends AppCompatActivity {
     private void updateData(int currentPage){
         ArrayAdapter<Event> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pagination.generateData(currentPage));
         listView.setAdapter(adapter);
+
+        updateButton();
     }
 }

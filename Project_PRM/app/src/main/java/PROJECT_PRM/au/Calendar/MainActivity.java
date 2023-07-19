@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
     DBOpenHelper db;
     private static final int  PERMISSION_REQUEST_CODE = 101;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
 //    }
 
     public void storeDataInArray(){
-        try{
+//        try{
             Cursor cursor= db.readEvents();
             if(cursor.getCount()==0){
                 Toast.makeText(this, "No events", Toast.LENGTH_SHORT).show();
@@ -115,9 +116,9 @@ public class MainActivity extends AppCompatActivity implements CalendarAdapter.O
                     Event.eventsList.clear();
                 }
             }
-        }catch (Exception ex){
-
-        }
+//        }catch (Exception ex){
+//
+//        }
     }
 
 

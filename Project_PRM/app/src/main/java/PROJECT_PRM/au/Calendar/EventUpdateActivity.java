@@ -103,12 +103,12 @@ public class EventUpdateActivity extends AppCompatActivity
         String eventName = etEventName.getText().toString();
         Event selectedEvent= Event.getEvent(title0, LocalDate.parse(date0), LocalTime.parse(time0));
         selectedEvent.setName(eventName);
-        selectedEvent.setDate(LocalDate.parse(tvEventDate.getText().toString().substring(6), DateTimeFormatter.ofPattern("dd MMMM yyyy")));
-        selectedEvent.setTime(LocalTime.parse(tvEventTime.getText().toString().substring(6), DateTimeFormatter.ofPattern("hh:mm:ss a")));
+        selectedEvent.setDate(CalendarUtils.stringToLocalDate(tvEventDate.getText().toString()));
+        selectedEvent.setTime(CalendarUtils.stringToLocalTime(tvEventTime.getText().toString()));
 
 
         //Cần thêm sqlite để save vô file
-        mydb.updateEvent(title0, time0, date0, eventName, null, tvEventTime.getText().toString(), tvEventDate.getText().toString(), null);
+        mydb.updateEvent(title0, time0, date0, eventName, null, CalendarUtils.stringToLocalTime(tvEventTime.getText().toString()).toString(), CalendarUtils.stringToLocalDate(tvEventDate.getText().toString()).toString(), null);
         finish();
     }
     public void deleteEventAction(View view){
